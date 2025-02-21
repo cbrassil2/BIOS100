@@ -159,11 +159,12 @@ trees |>
   select(Girth)
 ```
 
-You can also select with a minus sign to select what you don't want to see.
+Write code below to select the Girth and Height columns from the trees data...
 
 ```{r}
-trees |>
-  select(-Volume)
+
+
+
 ```
 
 Note, you may see references to a tibble, which is a tidyverse version of a data frame (and kind of sounds like the word table). They are used the same way in code.
