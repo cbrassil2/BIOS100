@@ -1,0 +1,379 @@
+---
+title: "BIOS100-Intro"
+author: "Your Name"
+date: "Spring 2025"
+output: 
+  html_document:
+    df_print: tibble
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Biology Research
+
+Research is a central element of all science, including biology. Biology is an integrative science, which draws on methods from chemistry, physics, mathematics, and computer science to ask and to find answers to questions about life. For many, asking and answering questions is a central part of what excites them about biology.
+
+In many cases, asking and answering questions in biology means collecting data on cells, tissues, organisms, populations, or ecosystems. In your laboratory courses, you will have the time and resources to begin learning those methods. However, there are many questions in biology in which we make progress by analyzing existing data, and sometimes large data sets. For example, there are tremendous amounts of genetic data that we generated across individual research projects, which is now stored in central databases. The National Ecological Observatory Network (NEON) has is set of data being collected on ecosystem processes at 81 sites across the United States since 2019. Research questions that utilize existing data allows us, in short introductory course, to jump right into the heart of asking and answering questions about life. At the same time, you will add some skills from data science to your toolbox, something which you may draw in your future courses or career.
+
+# A Bunch of Programs: R, RStudio, Posit, and Github
+
+Here the names of some programs and websites you are using, but if you are viewing this, you've already moved through all of these steps. Some links and details are listed here for your future reference.
+
+We will use the program R for our work. R is one of the top programming languages used for data science. It is a a free program and most new statistical methods get published as library packages in R. Consequently, learning R gives you experience in a real-word tool for doing biological research and analysis.
+
+Optionally, you can download and install a copy of R onto your desktop computer at <https://cran.rstudio.com/> and then download and install RStudio at <https://posit.co/download/rstudio-desktop/>. However, as a beginner in this class, it will be easier to use a cloud-based online implementation of RStudio via the Posit Cloud. Using Posit Cloud is an easier way to get started because we don't have to mess with machine-specific installation requirements. Everything can be viewed through a browser window such as Chrome, Safari, or Edge. If you haven't already done so, you can create a free account at <https://posit.cloud/plans/free>. At some point, you may want to sign up for a paid student account, but for the purposes of this class, the free account is adequate.
+
+This file is being hosted on the github website so that you can easily download it into your Posit Cloud site. The url for the GitHub repository is <https://github.com/cbrassil2/BIOS100>.
+
+Again, all of the above links are for your future reference. If you're reading this you already have a Posit Cloud account in which RStudio is installed and you have downloaded this R Markdown file from GitHub. For now, ignore all of those details and proceed with the next section to understand how you actually make things happen in R Markdown.
+
+# R Markdown
+
+What you are viewing is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents the integrates output from R code. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+In R Markdown, the R code itself is contained in a "chunk" that look like this gray box below. To execute this chunk and display an output, either click on the green arrow in the far right, or place your cursor anywhere in the gray area and type the following keys together: Ctrl+Shift+Enter in Windows or Cmd+Shift+Return in Mac.
+
+```{r}
+1 + 1
+```
+
+Go ahead and change one of the numbers to something else and run the line again to see the new output.
+
+In the case above, I asked R to add two numbers and display the output.
+
+To insert a chunk, from the top menu, under Code select Insert Chunk (i.e. Code/Insert Chunk). The menu item will also list short-cut to do this task. For example, if using Windows Operating System (OS), the shortcut is Ctrl+Alt+I (all pressed at the same time). If using Mac, the shortcut is Cmd+Option+I.
+
+Try that yourself. Insert a code chunk, type in a new calculation, and run the code chunnk...
+
+
+
+## c()
+
+In R, you create a vector of numbers, which is essentially a kind of list, by using the c() function, which stands for combine.
+
+```{r}
+c(4,5,2,11)
+```
+
+As an aside, this is a function because it has a word, or in this case a single letter, followed by opening and closing parentheses. Functions can have a single term, or in this case multiple terms separated by commas.
+
+A programming language is much more powerful than a calculator because we can store numbers in variable, and then reference that variable. There are different ways you can do this in R, with either a single equal sign or an arrow (typed using the minus sign and \> or \<). I prefer the arrow because it more explicitly communicates that you are storing a number in a variable. In addition, arrows have the advantage that can be used in either direction.
+
+```{r}
+x = 6
+y <- 5
+4 -> fred
+```
+
+Notice that variables can be single letters or whole words. In R a variable name can contain capital letters, underscores, or periods.
+
+Also note that nothing is displayed from the above. If you store the output in R, it assumes you don't want to see the output. If you want to see the output, you have to explicitly ask for the output.
+
+Below, I'll store another number in z, and then use combine to display the value in all four variables.
+
+```{r}
+8*2 -> z
+c(x,y,fred,z)
+```
+
+Regular text sitting outside of these chunks can be used to describe the programming, but sometimes you'll want to include text within the code as a note to yourself. These are called comments, and start with #. For example
+
+```{r}
+4 + 5*3 #Here is a comment, which will not be interpreted as code. Use it to make notes for yourself.
+```
+
+
+# Tidyverse and dplyr
+
+Tidyverse is a set of packages that make it easier for you to work with data in R. Optionally, you can view an overview at <https://www.tidyverse.org/>. The name comes from tidy, meaning clean and easy to use, and universe (or think multiverse). Tidyverse packages work together in a in an clean and easy to use way.
+
+One of the specific packages will use is called dplyr, which gets its name comes from the phrase "data pliers". In other words, tools you can use to grab and manipulate data, shortened to dplyr.
+
+Note, if this is the first time, it will have to download and install a number of packages. Wait a few minutes for it to complete. When it is completed, clicking the X in the upper right corner of the output will remove the messages in red text. 
+
+```{r, message=FALSE}
+if (!require("tidyverse")) install.packages("tidyverse"); library("tidyverse") #install and load tidyverse
+```
+
+## mean()
+
+The package dplyr makes it easier to manipulate data in series of steps. For an overly simplistic example let's try to take the average, or mean, of a list of three numbers. In basic R syntax, you have to create a list of three numbers, store it in a variable, and then execute a function that takes the average
+
+```{r}
+c(1.1, 2.1, 4.0) -> x #create a vector of three numbers and store it in the variable x. We'll call this our data.
+mean(x) #take the average of the vector
+```
+
+In base R we could shorten the code by skipping the step of storing the vector in x, but we created a nested series of steps that must be read from the inside out.
+
+```{r}
+mean(c(1.1, 2.1, 4.0)) #create a vector of data and then take the average
+```
+
+A fundamental change that dplyr introduces is what is called a pipe, written as |>. Here is an example of how it is used.
+
+```{r}
+c(1.1, 2.1, 4.0) |> #create a vector of data
+  mean() #take the average
+```
+
+The pipe takes the output from each line and places it in the first position of the function listed in the next line. This has two advantages. 1) You don't have to create a bunch or arbitrarily named variables. 2) You can read the code from top to the bottom (like a book) and think about each step modifying the output of the previous step. In other words, it is like data flowing down a water pipe, being manipulated at each step.
+
+## sqrt()
+
+Let's add one more intermediate step. After creating the vector of data, take the square root of each number. Then find the average.
+
+```{r}
+c(1.1, 2.1, 4.0) |> #create a vector of data
+  sqrt() |> #take the square root of each number
+  mean() #take the average
+```
+
+**Pro-tip**: you can select part of the above dlpyr code and execute just those parts. In the above code chunk, highlight just the part from c(1.1, 2.1. 3.2), i.e. the first line, but leave off the %\>%. Now type the keys together: Ctrl+Enter in Windows or Cmd+Return in Mac. That runs the current line or selection. What does it output?
+
+Do that again but select all of the first line and all of the second line with the exception of the %\>% at the end of the second line. What does it output?
+
+Finally, put your cursor anywhere in the above chunk, do not highlight anything, and type the same two keys. That should run the whole set of whole set of pipes.
+
+Those two keys are incredibly useful when writing and debugging code.
+
+# Data Frames
+
+Most of the time you'll be looking at not just a single vector of data, but rather a data table, or what in R can be called a data frame. Here is an example data frame that is automatically loaded in R by Tidyverse. For 31 Black Cherry trees, it shows the diameter in inches, called girth, of the trunk of a tree, the height in inches of that tree, and the volume in cubic feet of lumber that was harvested from that tree. We'll use it to see how you can manipulate a simple data frame.
+
+```{r}
+trees #example data set automatically loaded with tidyverse
+```
+
+In based R, you can use a $ to reference an individual column in a data frame.
+
+```{r}
+trees$Girth
+```
+## select()
+
+In tidyverse, you can use the select function to choose the column you want to see. Note, in database terminology, a column is also called a field.
+
+```{r}
+trees |>
+  select(Girth)
+```
+
+You can also select with a minus sign to select what you don't want to see.
+
+```{r}
+trees |>
+  select(-Volume)
+```
+
+Note, you may see references to a tibble, which is a tidyverse version of a data frame (and kind of sounds like the word table). They are used the same way in code.
+
+# Plot data using ggplot()
+
+Data is often easier to think about when we plot it. We are going to use the function ggplot() to display our data graphically. The package that contains ggplot was loaded when we loaded tidyverse. It is a little complicated to start with ggplot because we have to use the nested function aes(), which stands for aesthetic, to state which column will be plotted on the x-axis and which will be plotted on the y-axis.
+
+## ggplot()
+
+```{r}
+trees |>
+  ggplot(aes(x=Girth, y=Height))
+```
+
+In one more twist of complications, the above doesn't actually show us any data. It just lays out the axes. To plot the data points we have to use one more function, in this case geom_point() to plot a scatter plot. The name is a bit esoteric, but the "geom" part refers to the fact that we are making geometric object and the "point" part refers to the fact that we want to plot points.
+
+And in one more annoying twist of coding, when we are modifying output from ggplot() we have to use a "+" sign instead of "%\>%". There is no good reason for this, it is artifact of how these functions developed over time.
+
+```{r}
+trees |>
+  ggplot(aes(x=Girth, y=Height)) + #within aes() define x and y #use the + sign instead of |> once you are modifying ggplot output
+  geom_point() #scatter plot
+```
+
+While the above looks fine, many purists want a cleaner look without the background grid. There is theoretical rational for that in ideas developed by Edward Tufte in book called "The Visual Display of Quantitative Information". Tufte argued that the bulk of the "ink" in a figure should be on the data of interest and not all the dressing around the data. In other words, eliminate the grid lines so that your eye can focus on the data.
+
+```{r}
+trees |>
+  ggplot(aes(x=Girth, y=Height)) +
+  geom_point() +
+  theme_classic() #simple graph with no grid lines
+```
+
+In the spirit of increasing the ink dedicated to the data, here is how you can use "size" to make the points bigger. I'm also going to change the shape from a filled-in-dot to an open circle. In general I prefer open circles because of they nicely display points when there are lots of partially overlapping data points. That is not the case here, but we'll practice the code now.
+
+```{r}
+trees |>
+  ggplot(aes(x=Girth, y=Height)) +
+  geom_point(shape = 1, size = 3) + #use shape and size to change the shape and size of the points
+  theme_classic()
+
+```
+## filter()
+
+It is not obvious in the above figure, but two of the data points are sitting directly on top of each other. They have the exact same values of Girth and Height. If you hand count the points in the above figure you'll only count 30, and trees has 31 rows of data. After looking through the data frame I notived that it is occuring where Girth is equal to 18. I am going to use the filter() function to only show the rows where Girth is equal to 18. When using filter(), you have to use the double equal sign (==) because we want to test for those rows in which they are equal. We are not storing a value in a parameter; we are doing a test.
+
+```{r}
+trees |>
+  filter(Girth == 18.0) #filter to only those rows in which Girth is equal to 18.0
+```
+
+The above two rows have identical Girth and Height, even though they have slightly different Volume.
+
+
+```{r}
+trees |>
+  ggplot(aes(x=Girth, y=Height)) +
+  geom_point(shape = 1, size = 3, position = "jitter") + #use shape and size to change the shape and size of the points
+  theme_classic()
+```
+
+Now I am going to use the "xlab" function to change the x-axis label so that it includes the units. Notice how the label is in quotation marks. That is because it is a string of characters and not a number or a variable. I want the string of characters to be printed exactly as I typed it, including spaces, so we use quotes. 
+
+```{r}
+trees |>
+  ggplot(aes(x=Girth, y=Height)) +
+  geom_point(shape = 1, size = 3, position = "jitter") + #use shape and size to change the shape and size of the points
+  theme_classic() +
+  xlab("Diameter (inches)")
+```
+
+Notice how with each chunk of code, I am copying the previous code and modifying it slightly to make it more complicated. The final chunk of code looks complicated, but we built it step by step. Do the same by copying the code, pasting it below, and modify it so that the name of the y-axis has information on the units as well, which is inches. Hint, the function is called ylab()
+
+```{r}
+
+```
+
+# Taking averages within groups
+
+We are going to switch to another data set, in this case showing the sepal and petal length and width that was measured on some iris flowers of a few different species. In the case of an iris, the sepal are the three broad purple parts of the flower that look like outer flower petals but are derived from tissue that typically sits just below the flower in most other plants. In an iris, the petals are the three purple parts that stand more upright in the center fo the sepals.
+
+```{r}
+iris
+```
+
+## summarize()
+
+The "summarize" function is used to take a number of rows and reduce them to a single number, based on whatever functions you provide. In this case, we'll use summarise to take the average petal width of all flowers in the data. We've also include the function n(), which will report the number of flowers included in the average.
+
+```{r}
+iris |>
+  summarise(ave_petal = mean(Petal.Width), number_of_flowers = n())
+```
+
+## group_by()
+
+The "group_by" function is used to group the data into subsets based on a categorical field, in this case Species. This should calculate the aveage petal width for each species.
+
+```{r}
+iris |>
+  group_by(Species) |>
+  summarise(ave_petal = mean(Petal.Width))
+```
+
+## bar plot
+
+To plot that data, we'll use ggplot again, but instead of geom_point() we'll use geom_bar(). Becuase of the way we've set up the data, we need to include the option stat="identity" so that it just plots what we give it and doesn't try to do any extra counting.
+
+```{r}
+iris |>
+  group_by(Species) |>
+  summarise(ave_petal = mean(Petal.Width)) |>
+  ggplot(aes(x=Species, y=ave_petal)) +
+  geom_bar(stat="identity") + #bar plot and the stat="identity" tells the code to simple plot the given x and y in the aes(). Without that, the default is to count the number of times something occurs in the data and display it on the y-axis. 
+  theme_classic()
+```
+
+# Resources for Finding Help
+
+Even I don't walk around with all of these coding details in my head. To make the above graph, I had to Google "R bar plot". I ended up using this website <http://www.sthda.com/english/wiki/ggplot2-barplots-quick-start-guide-r-software-and-data-visualization>, which showed my how to include the stat="identity" part in geom_bar. Looking up example code in Google is very useful. It is probably the number way I look for coding information. For example, a simple search such as "tidyverse summarise" quickly gets you to useful sites.
+
+And the online references linked through the tidyverse website are really great - dplyr <https://dplyr.tidyverse.org/> - ggplot2 <https://ggplot2.tidyverse.org/>
+
+Even more than looking up code via Google, I do a lot of copy/paste/modify of existing code. You can do the same. Copy the code from this file and future tutorials. Then modify the code to make it do what you want.
+
+## Cheatsheets
+
+Some people use what are called cheat sheets. These pack in lots of code for a quick reference. It may be too overwhelming for you right now, but know they exist.
+
+-   dplyr cheatsheet: <https://rstudio.github.io/cheatsheets/data-transformation.pdf>
+-   ggplot cheatsheet <https://rstudio.github.io/cheatsheets/data-visualization.pdf>
+-   RStudio cheatsheet: <https://rstudio.github.io/cheatsheets/rstudio-ide.pdf>
+
+## Online Book
+
+The book "R for Data Science (2e)" will cover many of the above topics in more detail. It is not required reading, but you may find it to be a helpful resource. An online copy of the book can be viewed for free at <https://r4ds.hadley.nz/>.
+
+# Homework
+
+## Tidyverse Practice
+
+### Challenge 1A: 
+Re-write the following code using tidyverse structure instead of base R. Hint: two lines of code for beginner status, but expand to three lines of code for master status.
+
+```{r}
+max(trees$Girth)
+```
+
+### Challenge 1B:
+
+Note, we've introduced a new function above, and I suspect you can figure out what it does. In words, describe what your above re-written code does?
+
+TYPE ANSWER HERE: 
+
+## Debug
+
+Everyone makes mistakes coding, or what we call bugs. A key skill set is learning to debug your code. The following examples have errors. See if you can correct them, i.e. debug the following code.
+
+### Challenge 2
+
+```{r}
+(3.4, 5, 6.8, 10, 2.4) |>
+  mean()
+```
+
+### Challenge 3
+
+```{r}
+(6.5, 12.3, 4.3 10, 23.5) |>
+  mean()
+```
+
+### Challenge 4
+
+```{r}
+iris |>
+  ggplot(aes(x=Sepal.Length, y=Sepal.Width)) |>
+  geom_point(shape = 1, position = "jitter") |> #scatter plot which adds a small random value to each point
+  theme_classic()
+```
+
+### Challenge 5
+
+Using the tree data, we'll plot the Girth versus the Height as a line instead of a scatter plot. You challenge is to remove the grid lines.
+
+```{r}
+trees |>
+  ggplot(aes(x=Girth,y=Height)) |>
+  geom_line() 
+```
+
+### Bonus Challenge
+
+Now make a copy of the above plot. Modify it to include the line and each of the points, i.e the line and the dots, by using ggplot(). You already know all of the individual lines of code to make this happen, but you have to combine the code in new ways. Feel free to use Google and search for an answer. I recommend including "ggplot" in your search.
+
+```{r}
+
+```
+
+# Knit your workbook
+
+When you click the **Knit** button an html document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can use that to create a copy of your code that can be shared with others. When you've completed the challenges, knit this code and upload it in Canvas to complete your assignment.
+
+If Posit tells you that it needs to update some packages in order to complete the render, go ahead and say "Yes".
+
+After rendering the html, your browser will likely block Posit from opening the pop-up. If it asks, you may be able to click "Try Again" to open the html document. Otherwise, you can click on the newly created ".html" file in the "Files" window in the lower right, and choose "View in Web Browser".
+
+To save the html report, in the "Files" window check the box next to the html file. The, click on "More" or the gear symbol in the menu and choose "Export...". This will allow you to download the html file.
+
+Then upload the html file for the assignment in Canvas.
