@@ -95,6 +95,11 @@ Tidyverse is a set of packages that make it easier for you to work with data in 
 
 One of the specific packages will use is called dplyr, which gets its name comes from the phrase "data pliers". In other words, tools you can use to grab and manipulate data, shortened to dplyr.
 
+```{r packages}
+if (!require("tidyverse")) install.packages("tidyverse"); library("tidyverse") #install and load tidyverse
+if (!require("neonUtilities")) install.packages("neonUtilities"); library("neonUtilities") #used to download NEON data
+```
+
 ## mean()
 
 The package dplyr makes it easier to manipulate data in series of steps. For an overly simplistic example let's try to take the average, or mean, of a list of three numbers. In basic R syntax, you have to create a list of three numbers, store it in a variable, and then execute a function that takes the average
