@@ -133,7 +133,9 @@ Appreciating that you may not consider yourself an expert on diseases transmitte
 
 I am going to draw on my knowledge of climate change, to ask the question of whether mosquito diseases are increasing over time. Given what I understand about climate change becoming more prevalent and that I once read a paper suggesting that a warmer climate may lead to more diseases [Hall et al 2006](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1890/0012-9658%282006%2987%5B1684%3AWDNHTM%5D2.0.CO%3B2). I'm going to hypothesize that the incidence of mosquito diseases will increase over time. Granted, there may be other things that have increased over time besides a warming climate. Therefore this data won't be definitive, but it will provide some evidence to either further support this hypothesis I just created or evidence to counter it. At the same time, perhaps my data will be inconclusive.
 
-First, let's reformulate my data to ask this question with the Konza Prairie data.
+## Creating a figure
+
+Once you have an hypothesis, create a figure that provides evidence related to your hypothesis. Let's reformulate my data to ask this question with the Konza Prairie data.
 
 Look back to the code above. I'll use this same format to set up ggplot. I can copy/paste/modify the code or write it out line by line. 
 
@@ -165,7 +167,12 @@ datalist$mos_pathogenresults |>
 
 Now we can see the two positives.
 
-On one hand, this data suggests there has been no chance in diseases, or perhaps a decrease. However, if diseases are rare, which they appear to be, it might take more data to show any patterns. That could mean more data over time or more data across more sites. I've already used all the time points in the data set, but I could expand to more sites. In this case, let's look at all of the sites in NEON.
+This data suggests there has been no chance in diseases, or perhaps a decrease. For your project, this would be an appropriate conclusion and appropriate spot to stop and submit your report.
+
+## Going Deeper to Create Another Figure
+Given that we are learning together, let's take this inquiry further, and along the way practice our data analysis skill sets.
+
+If diseases are rare, which they appear to be, it might take more data to show any patterns. That could mean more data over time or more data across more sites. I've already used all the time points in the data set, but I could expand to more sites. In this case, let's look at all of the sites in NEON.
 
 ### Optional NEON Token for large downloads of data
 By removing site, it will download data from all sites. This may take some time because that is a lot of data to download. In my case, I received a multuple messages that it needed to pause for 99 seconds between downloads. So be patient. If you are going to do a project with NEON data, you can [sign up for a free token](https://data.neonscience.org/data-api/rate-limiting/) to increase your rate. The token is included in your loadByProduct() call as loadByProduct(...,token = "")

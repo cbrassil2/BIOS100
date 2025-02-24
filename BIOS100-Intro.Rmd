@@ -11,10 +11,6 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r packages, message=FALSE}
-if (!require("tidyverse")) install.packages("tidyverse"); library("tidyverse") #install and load tidyverse
-```
-
 # Biology Research
 
 Research is a central element of all science, including biology. Biology is an integrative science, which draws on methods from chemistry, physics, mathematics, and computer science to ask and to find answers to questions about life. For many, asking and answering questions is a central part of what excites them about biology.
@@ -91,14 +87,16 @@ Regular text sitting outside of these chunks can be used to describe the program
 
 # Tidyverse and dplyr
 
-Tidyverse is a set of packages that make it easier for you to work with data in R. Optionally, you can view an overview at <https://www.tidyverse.org/>. The name comes from tidy, meaning clean and easy to use, and universe (or think multiverse). Tidyverse packages work together in a in an clean and easy to use way. We loaded this at the top of this file.
+Tidyverse is a set of packages that make it easier for you to work with data in R. Optionally, you can view an overview at <https://www.tidyverse.org/>. The name comes from tidy, meaning clean and easy to use, and universe (or think multiverse). Tidyverse packages work together in a in an clean and easy to use way.
 
 One of the specific packages will use is called dplyr, which gets its name comes from the phrase "data pliers". In other words, tools you can use to grab and manipulate data, shortened to dplyr.
 
-```{r packages}
+Load this package here.
+
+```{r packages, message=FALSE}
 if (!require("tidyverse")) install.packages("tidyverse"); library("tidyverse") #install and load tidyverse
-if (!require("neonUtilities")) install.packages("neonUtilities"); library("neonUtilities") #used to download NEON data
 ```
+
 
 ## mean()
 
@@ -215,7 +213,7 @@ trees |>
 ```
 ## filter()
 
-It is not obvious in the above figure, but two of the data points are sitting directly on top of each other. They have the exact same values of Girth and Height. If you hand count the points in the above figure you'll only count 30, and trees has 31 rows of data. After looking through the data frame I notived that it is occuring where Girth is equal to 18. I am going to use the filter() function to only show the rows where Girth is equal to 18. When using filter(), you have to use the double equal sign (==) because we want to test for those rows in which they are equal. We are not storing a value in a parameter; we are doing a test.
+It is not obvious in the above figure, but two of the data points are sitting directly on top of each other. They have the exact same values of Girth and Height. If you hand count the points in the above figure you'll only count 30, and trees has 31 rows of data. After looking through the data frame I noticed that it is occurring where Girth is equal to 18. I am going to use the filter() function to only show the rows where Girth is equal to 18. When using filter(), you have to use the double equal sign (==) because we want to test for those rows in which they are equal. We are not storing a value in a parameter; we are doing a test.
 
 ```{r}
 trees |>
@@ -236,7 +234,7 @@ Now I am going to use the "xlab" function to change the x-axis label so that it 
 ```{r}
 trees |>
   ggplot(aes(x=Girth, y=Height)) +
-  geom_point(shape = 1, size = 3, position = "jitter") + #use shape and size to change the shape and size of the points
+  geom_point(shape = 1, size = 3, position = "jitter") +
   theme_classic() +
   xlab("Diameter (inches)")
 ```
@@ -244,6 +242,7 @@ trees |>
 Notice how with each chunk of code, I am copying the previous code and modifying it slightly to make it more complicated. The final chunk of code looks complicated, but we built it step by step. Do the same by copying the code, pasting it below, and modify it so that the name of the y-axis has information on the units as well, which is inches. Hint, the function is called ylab()
 
 ```{r}
+
 
 ```
 
