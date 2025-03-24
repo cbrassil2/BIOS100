@@ -191,11 +191,11 @@ BirdDiversity
 
 ## left_join()
 
-The function left_join() is used to join the second data set to the first. It keeps all of the rows from the first data set, in this case Plant Diversity. It looks for any rows in the second data set with the same values for the field listed in "by", in this case plotID. If a plotID is missing from the second data set, the entry will be listed as NA.
+The function left_join() is used to join the second data set to the first. It keeps all of the rows from the first data set, in this case Plant Diversity. It looks for any rows in the second data set with the same values for the field listed in "join_by", in this case plotID. If a plotID is missing from the second data set, the entry will be listed as NA.
 
 ```{r}
 PlantDiversity |>
-  left_join(BirdDiversity, by = c("plotID")) #join those with the same plotID
+  left_join(BirdDiversity, join_by(plotID)) #join those with the same plotID
 ```
 
 ## is.na()
@@ -204,14 +204,14 @@ We can't plot NA because it is meaningless. Therefore, we'll remove the rows wit
 
 ```{r}
 PlantDiversity |>
-  left_join(BirdDiversity, by = c("plotID")) |> #join those with the same plotID
+  left_join(BirdDiversity, join_by(plotID)) |> #join those with the same plotID
   filter(!is.na(bird_richness)) #remove those with NA in bird_richness
 ```
 
 
 ```{r}
 PlantDiversity |>
-  left_join(BirdDiversity, by = c("plotID")) |> #join those with the same plotID
+  left_join(BirdDiversity, join_by(plotID)) |> #join those with the same plotID
   filter(!is.na(bird_richness)) |> #remove those with NA in bird_richness
   ggplot(aes(x = plant_richness, y = bird_richness)) +
     geom_point(shape = 1, size = 3) +
