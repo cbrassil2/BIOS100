@@ -41,8 +41,8 @@ a) Uncomment, remove the #, from the first and second line, i.e. loadByProduct()
 b) Fill in details for dpID and site based on what you decided above.
 
 ```{r}
-#datalist = loadByProduct(dpID="", site="", check.size = F) #uncomment to run a single time
-#saveRDS(datalist,file="NEONdatalist_Project") #uncomment to run a single time
+#datalist = loadByProduct(dpID="", site="", check.size = F) 
+#saveRDS(datalist,file="NEONdatalist_Project")
 datalist <- readRDS(file="NEONdatalist_Project")
 ```
 
@@ -53,8 +53,8 @@ Optionally, you may need to load multiple products and store them in different d
 ```{r}
 #You may end up downloading and combining two data sets. This can done the same as above, just save it as datalist2
 
-#datalist2 = loadByProduct(dpID="", site="", check.size = F) #uncomment to run a single time
-#saveRDS(datalist2,file="NEONdatalist_Project2") #uncomment to run a single time
+#datalist2 = loadByProduct(dpID="", site="", check.size = F) 
+#saveRDS(datalist2,file="NEONdatalist_Project2")
 #datalist2 <- readRDS(file="NEONdatalist_Project2")
 ```
 
