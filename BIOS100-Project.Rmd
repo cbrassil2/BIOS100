@@ -36,27 +36,18 @@ Load your data.
 
 ## 2) COMPLETE THE CODE CHUNK BELOW
 
-a) Uncomment, remove the #, from the first and second line, i.e. loadByProduct() and saveRDS()
-
-b) Fill in details for dpID and site based on what you decided above.
+In the code below, fill in details for dpID and site based on what data decided to examine.
 
 ```{r}
-#datalist = loadByProduct(dpID="", site="", check.size = F) 
-#saveRDS(datalist,file="NEONdatalist_Project")
+datalist = loadByProduct(dpID="", site="", check.size = F) 
+saveRDS(datalist,file="NEONdatalist_Project")
 datalist <- readRDS(file="NEONdatalist_Project")
 ```
 
-c) After executing the above code once, add the comment back to the first and second line. That way it will load the data locally each time and run much faster.
+After executing the above code once, add # in front of the first and second line, i.e. the line that starts with datalist = loadByProduct and the line that starts with saveRDS. Commenting out those two lines will run the code much faster each time becuase it will just load the data from the local copy.
 
 Optionally, you may need to load multiple products and store them in different datalist variables.
 
-```{r}
-#You may end up downloading and combining two data sets. This can done the same as above, just save it as datalist2
-
-#datalist2 = loadByProduct(dpID="", site="", check.size = F) 
-#saveRDS(datalist2,file="NEONdatalist_Project2")
-#datalist2 <- readRDS(file="NEONdatalist_Project2")
-```
 
 ```{r}
 names(datalist)

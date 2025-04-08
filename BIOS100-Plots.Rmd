@@ -23,7 +23,7 @@ We are going to consider three ways to view data. The first is a time series, wh
 A time series plots a biological variable against time. In this case, we summed data by year, calculating the fraction per year.
 
 ```{r}
-datalist <- readRDS(file="NEONdatalist") #load local data
+datalist <- readRDS(file="NEONdatalist_all_mosquito") #load local data
 
 datalist$mos_pathogenresults |>
   filter(testResult != "Inconclusive") |>
