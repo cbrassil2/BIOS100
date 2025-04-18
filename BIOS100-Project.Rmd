@@ -1,7 +1,7 @@
 ---
 title: "BIOS100-Project"
 author: "Your Name"
-date: "Spring 2025"
+date: "Fall 2025"
 output: 
   html_document:
     df_print: tibble
@@ -22,6 +22,8 @@ if (!require("neonUtilities")) install.packages("neonUtilities"); library("neonU
 Use [Explore Data by Location](https://www.neonscience.org/data#0) to start with a map-based view of of sites.
 
 Or use [Explore Data Products](https://data.neonscience.org/data-products/explore) to start with the kind of data that is available. On the left-hand side Filter, I recommend you stick with the Theme "Organisms, Populations, and Communities", because you've learned the tools to work with that kind of data.
+
+We already explored the mosquito pathogen status for all NEON sites across time, so you choose a different set of data.
 
 Below, type a few sentences on what data you plan on using. Include information on which sites and information which data sets. It may also be appropriate to include information on which year(s) you are examining.
 
@@ -79,15 +81,14 @@ datalist$variables_00000 |>
 
 # Develop a question and a hypotheses
 
-What question are you asking about that data?
+Ask a question that your data has the potential to address. A hypothesis is an informed expectation based on what you know about the system. 
 
 ## 4) WHAT IS YOUR QUESTION?
 
 
 
-A hypothesis is an informed expectation based on what you know about the system. 
-
 ## 5) WHAT IS YOUR HYPOTHESIS
+
 
 
 
