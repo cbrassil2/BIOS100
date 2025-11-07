@@ -2,7 +2,9 @@
 title: "BIOS100-Plots"
 author: "Chad Brassil"
 date: "Fall 2025"
-output: 
+output:
+  pdf_document:
+    df_print: tibble
   html_document:
     df_print: tibble
 ---
